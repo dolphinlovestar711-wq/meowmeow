@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>喵喵基地 meowmeow - 會員版</title>
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="member-page">
+  <main>
+    <section class="member-container" aria-labelledby="member-site-title">
+      <h1 id="member-site-title">🐾 喵喵基地</h1>
+      <p>歡迎來到貓奴的祕密花園！</p>
+      <button class="meow-btn" id="meow-button" type="button">摸貓咪 🐱</button>
+      <div class="sound" id="sound" aria-live="polite"></div>
+    </section>
+
+    <section class="member-container" aria-labelledby="member-center-title">
+      <h2 id="member-center-title">🔒 會員中心</h2>
+
+      <div id="auth-logged-out" class="auth-form">
+        <input type="email" id="email" placeholder="電子郵件 (Email)" autocomplete="email">
+        <input type="password" id="password" placeholder="密碼 (Password)" autocomplete="current-password">
+        <button class="auth-btn" id="signup-button" type="button">註冊新會員</button>
+        <button class="auth-btn login-btn" id="login-button" type="button">會員登入</button>
+      </div>
+
+      <div id="auth-logged-in" class="hidden">
+        <div class="user-info" id="user-display">歡迎回來，會員！</div>
+        <p>🎉 恭喜解鎖會員專屬特權（這裡可以放會員才看得到的內容）</p>
+        <button class="auth-btn logout-btn" id="logout-button" type="button">登出</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/member.js"></script>
+</body>
+</html>

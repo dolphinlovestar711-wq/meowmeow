@@ -43,6 +43,22 @@ body {
   color: var(--brand);
 }
 
+.member-nav-link {
+  align-items: center;
+  background: var(--brand);
+  border-radius: 999px;
+  color: #fff;
+  display: inline-flex;
+  gap: .35rem;
+  padding: .4rem .9rem;
+}
+
+.member-nav-link:hover,
+.member-nav-link:focus {
+  background: #b94c27;
+  color: #fff;
+}
+
 .hero-carousel .carousel-item {
   height: clamp(260px, 32vw, 430px);
   background: #f7f1ed;
@@ -197,6 +213,101 @@ body {
   color: #fff;
 }
 
+.member-page {
+  align-items: center;
+  background-color: #f7f9fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.member-page main {
+  width: 100%;
+}
+
+.member-container {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+  margin: 0 auto 20px;
+  max-width: 400px;
+  padding: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.member-container h1 {
+  color: #ff6b81;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 10px;
+}
+
+.member-container p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.meow-btn,
+.auth-btn {
+  background-color: #ff6b81;
+  border: 0;
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  padding: 12px 28px;
+  transition: transform .2s, background-color .2s;
+  width: 100%;
+}
+
+.meow-btn:hover,
+.auth-btn:hover,
+.meow-btn:focus,
+.auth-btn:focus {
+  background-color: #ff4757;
+}
+
+.auth-form input {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin: 8px 0;
+  padding: 10px;
+  width: 100%;
+}
+
+.login-btn {
+  background-color: #54a0ff;
+}
+
+.logout-btn {
+  background-color: #a4b0be;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.user-info {
+  color: #2ed573;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.sound {
+  color: #ffa502;
+  font-weight: 700;
+  margin-top: 15px;
+  min-height: 1.5em;
+}
+
 .copyright {
   border-top: 1px solid rgba(255, 255, 255, .12);
   color: rgba(255, 255, 255, .54);
@@ -218,5 +329,10 @@ body {
 
   .product-card img {
     height: 170px;
+  }
+
+  .member-nav-link {
+    justify-content: center;
+    margin-top: .35rem;
   }
 }
