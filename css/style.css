@@ -165,6 +165,22 @@ body {
   font-size: .9rem;
 }
 
+.btnstyle {
+  color: white;
+  background-color: #007bff;
+  font-size: 24px;
+  padding: 15px 20px;
+  border: 1px solid #007bff;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 3em;
+}
+
+.btnstyle:hover {
+  background-color: #00438a;
+}
+
 .site-footer {
   background: var(--footer);
   color: rgba(255, 255, 255, .76);
