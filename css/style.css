@@ -167,10 +167,10 @@ body {
 
 a.btnstyle {
   color: white;
-  background-color: #007bff;
+  background-color: #000000;
   font-size: 16px;
   padding: 10px 10px;
-  border: 1px solid #007bff;
+  border: 1px solid #000000;
   border-radius: 16px;
   cursor: pointer;
   text-decoration: none;
