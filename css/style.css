@@ -561,7 +561,6 @@ a.btnstyle.is-adding .cart-icon {
 }
 
 .wandering-cat img {
-  animation: cat-running-steps .32s steps(2, jump-none) infinite;
   display: block;
   width: 100%;
 }
@@ -613,18 +612,6 @@ a.btnstyle.is-adding .cart-icon {
   100% {
     opacity: 0;
     transform: translateX(clamp(-210px, -12vw, -80px));
-  }
-}
-
-@keyframes cat-running-steps {
-  0% {
-    transform: translateY(0) rotate(-3deg) scaleY(.96);
-  }
-  50% {
-    transform: translateY(-9px) rotate(3deg) scaleY(1.03);
-  }
-  100% {
-    transform: translateY(0) rotate(-3deg) scaleY(.96);
   }
 }
 
