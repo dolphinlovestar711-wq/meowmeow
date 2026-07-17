@@ -345,6 +345,74 @@ a.btnstyle.is-adding .cart-icon {
   width: 100%;
 }
 
+.member-home-nav {
+  margin: 18px auto 28px;
+  text-align: center;
+}
+
+.home-cat-button {
+  align-items: center;
+  background: #ffb7c3;
+  border: 3px solid #ff8da1;
+  border-radius: 48% 48% 44% 44%;
+  color: #000;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 800;
+  gap: 7px;
+  justify-content: center;
+  min-height: 72px;
+  min-width: 150px;
+  padding: 18px 24px 12px;
+  position: relative;
+  text-decoration: none;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.home-cat-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.home-cat-button::before,
+.home-cat-button::after {
+  background: #ffb7c3;
+  border-left: 3px solid #ff8da1;
+  border-top: 3px solid #ff8da1;
+  content: "";
+  height: 34px;
+  position: absolute;
+  top: -14px;
+  transform: rotate(45deg);
+  width: 34px;
+  z-index: 0;
+}
+
+.home-cat-button::before {
+  left: 19px;
+}
+
+.home-cat-button::after {
+  right: 19px;
+}
+
+.home-cat-button:hover {
+  background: #ff9eb0;
+  color: #000;
+  transform: translateY(-3px);
+}
+
+.home-cat-button:hover::before,
+.home-cat-button:hover::after {
+  background: #ff9eb0;
+}
+
+.home-cat-button:focus-visible {
+  color: #000;
+  outline: 3px solid rgba(255, 107, 129, .35);
+  outline-offset: 5px;
+}
+
 .member-container {
   background-color: #fff;
   border-radius: 16px;
