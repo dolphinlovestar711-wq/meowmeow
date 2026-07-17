@@ -422,6 +422,10 @@ a.btnstyle.is-adding .cart-icon {
   a.btnstyle.is-adding .cart-icon {
     animation: none;
   }
+
+  .wandering-cat {
+    animation: none;
+  }
 }
 
 .site-footer {
@@ -515,48 +519,8 @@ a.btnstyle.is-adding .cart-icon {
   display: block;
   filter: drop-shadow(0 8px 7px rgba(38, 51, 53, .16));
   height: 132px;
-  overflow: visible;
+  object-fit: contain;
   width: 145px;
-}
-
-.cat-body,
-.cat-chest,
-.cat-head,
-.cat-paw {
-  fill: #111;
-}
-
-.cat-tail {
-  fill: none;
-  stroke: #111;
-  stroke-linecap: round;
-  stroke-width: 15;
-}
-
-.cat-eye {
-  fill: #fff;
-}
-
-.cat-pupil,
-.cat-bell-dot {
-  fill: #111;
-}
-
-.cat-nose {
-  fill: #fff;
-}
-
-.cat-collar {
-  fill: none;
-  stroke: #ff6b81;
-  stroke-linecap: round;
-  stroke-width: 7;
-}
-
-.cat-bell {
-  fill: #ffd166;
-  stroke: #fff;
-  stroke-width: 2;
 }
 
 .home-cat-label {
@@ -581,6 +545,64 @@ a.btnstyle.is-adding .cart-icon {
   color: #000;
   outline: 3px solid rgba(255, 107, 129, .35);
   outline-offset: 5px;
+}
+
+.wandering-cat {
+  bottom: 8vh;
+  filter: drop-shadow(0 10px 10px rgba(38, 51, 53, .16));
+  pointer-events: none;
+  position: fixed;
+  width: clamp(105px, 9vw, 150px);
+  z-index: 1;
+}
+
+.wandering-cat img {
+  display: block;
+  width: 100%;
+}
+
+.wandering-cat-left {
+  animation: cat-wander-left 10s ease-in-out infinite alternate;
+  left: clamp(18px, 8vw, 150px);
+}
+
+.wandering-cat-right {
+  animation: cat-wander-right 11s ease-in-out 1.2s infinite alternate;
+  right: clamp(18px, 8vw, 150px);
+}
+
+.wandering-cat-right img {
+  transform: scaleX(-1);
+}
+
+@keyframes cat-wander-left {
+  0% {
+    transform: translate(0, 0) rotate(-2deg);
+  }
+  35% {
+    transform: translate(34px, -90px) rotate(2deg);
+  }
+  70% {
+    transform: translate(-6px, -185px) rotate(-1deg);
+  }
+  100% {
+    transform: translate(48px, -280px) rotate(2deg);
+  }
+}
+
+@keyframes cat-wander-right {
+  0% {
+    transform: translate(0, -250px) rotate(2deg);
+  }
+  35% {
+    transform: translate(-42px, -170px) rotate(-2deg);
+  }
+  70% {
+    transform: translate(8px, -80px) rotate(1deg);
+  }
+  100% {
+    transform: translate(-32px, 0) rotate(-2deg);
+  }
 }
 
 .member-container {
@@ -1139,6 +1161,10 @@ a.btnstyle.is-adding .cart-icon {
 
   .brand-logo {
     height: 42px;
+  }
+
+  .wandering-cat {
+    display: none;
   }
 
   .about-section,
