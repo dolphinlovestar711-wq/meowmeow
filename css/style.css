@@ -13,7 +13,7 @@ body {
 }
 
 .navbar {
-  min-height: 40px;
+  min-height: 76px;
   box-shadow: 0 1px 8px rgba(38, 51, 53, .08);
 }
 
@@ -21,14 +21,15 @@ body {
   align-items: center;
   color: var(--brand);
   display: inline-flex;
-  font-size: .95rem;
+  font-size: 1.35rem;
   font-weight: 800;
-  gap: .5rem;
+  gap: .7rem;
   letter-spacing: 0;
 }
 
 .brand-logo {
-  height: 28px;
+  height: 50px;
+  object-fit: contain;
   width: auto;
 }
 
@@ -1127,6 +1128,19 @@ a.btnstyle.is-adding .cart-icon {
 }
 
 @media (max-width: 767.98px) {
+  .navbar {
+    min-height: 68px;
+  }
+
+  .navbar-brand {
+    font-size: 1.12rem;
+    gap: .5rem;
+  }
+
+  .brand-logo {
+    height: 42px;
+  }
+
   .about-section,
   .products-section {
     padding: 2.6rem 0;
