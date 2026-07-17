@@ -165,20 +165,25 @@ body {
   font-size: .9rem;
 }
 
-.btnstyle {
+a.btnstyle {
   color: white;
   background-color: #007bff;
-  font-size: 24px;
-  padding: 15px 20px;
+  font-size: 16px;
+  padding: 10px 10px;
   border: 1px solid #007bff;
-  border-radius: 20px;
+  border-radius: 16px;
   cursor: pointer;
   text-decoration: none;
   line-height: 3em;
 }
 
-.btnstyle:hover {
+a.btnstyle:hover {
   background-color: #00438a;
+}
+
+a.btnstyle:focus-visible {
+  outline: 3px solid rgba(0, 123, 255, .3);
+  outline-offset: 3px;
 }
 
 .site-footer {
