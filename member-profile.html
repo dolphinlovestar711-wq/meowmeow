@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>會員資料｜毛孩好伴 Pet Paradise</title>
+  <link href="css/style.css?v=20260718-10" rel="stylesheet">
+</head>
+<body class="profile-page">
+  <main class="profile-main">
+    <section class="profile-card" aria-labelledby="profile-title">
+      <a class="profile-back-link" href="member.html">← 返回會員專區</a>
+      <p class="profile-eyebrow">MEMBER PROFILE</p>
+      <h1 id="profile-title">🐾 會員資料</h1>
+      <p class="profile-description">請完成以下資料，標示「必填」的欄位不可留白。</p>
+
+      <form id="profile-form">
+        <div class="profile-field">
+          <label for="profile-name">姓名 <span>必填</span></label>
+          <input type="text" id="profile-name" name="name" autocomplete="name" required maxlength="50">
+        </div>
+
+        <div class="profile-field">
+          <label for="profile-birthday">出生年月日 <span>必填</span></label>
+          <input type="date" id="profile-birthday" name="birthday" autocomplete="bday" required>
+        </div>
+
+        <div class="profile-field">
+          <label for="profile-phone">聯絡電話 <span>必填</span></label>
+          <input type="tel" id="profile-phone" name="phone" autocomplete="tel" required maxlength="20" placeholder="例如：0912-345-678">
+        </div>
+
+        <div class="profile-field">
+          <label for="profile-email">Email <span>必填</span></label>
+          <input type="email" id="profile-email" name="email" autocomplete="email" required readonly>
+        </div>
+
+        <div class="profile-field">
+          <label for="profile-address">地址 <small>選填</small></label>
+          <input type="text" id="profile-address" name="address" autocomplete="street-address" maxlength="120">
+        </div>
+
+        <button class="profile-save-button" type="submit">儲存會員資料</button>
+        <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="profile-storage-note">資料僅儲存在目前裝置的瀏覽器本機端。</p>
+    </section>
+  </main>
+
+  <script src="js/member-profile.js?v=20260718-1"></script>
+</body>
+</html>

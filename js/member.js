@@ -6,6 +6,7 @@ const passwordInput = document.getElementById("password");
 const soundDiv = document.getElementById("sound");
 const usersKey = "petParadiseMembers";
 const currentUserKey = "petParadiseCurrentMember";
+const profilesKey = "petParadiseMemberProfiles";
 let audioContext;
 let meowStopTimer;
 const recordedMeow = new Audio("audio/cat-meow.ogg?v=20260718-1");
@@ -119,6 +120,15 @@ function clearCurrentUser() {
   localStorage.removeItem(currentUserKey);
 }
 
+function hasMemberProfile(email) {
+  try {
+    const profiles = JSON.parse(localStorage.getItem(profilesKey) || "{}");
+    return Boolean(profiles[email]);
+  } catch (error) {
+    return false;
+  }
+}
+
 function normalizeEmail(email) {
   return email.trim().toLowerCase();
 }
@@ -174,8 +184,8 @@ document.getElementById("signup-button").addEventListener("click", () => {
   users[email] = { password };
   saveUsers(users);
   setCurrentUser(email);
-  updateAuthView();
-  alert("註冊成功並已自動登入！");
+  alert("註冊成功！接下來請填寫會員資料。");
+  window.location.href = "member-profile.html";
 });
 
 document.getElementById("login-button").addEventListener("click", () => {
@@ -194,6 +204,13 @@ document.getElementById("login-button").addEventListener("click", () => {
   }
 
   setCurrentUser(email);
+
+  if (!hasMemberProfile(email)) {
+    alert("首次登入成功！請先完成會員資料。");
+    window.location.href = "member-profile.html";
+    return;
+  }
+
   updateAuthView();
   alert("登入成功！");
 });
