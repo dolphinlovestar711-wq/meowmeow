@@ -4,7 +4,6 @@ const userDisplay = document.getElementById("user-display");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const soundDiv = document.getElementById("sound");
-const meows = ["喵～", "咪屋？", "喵嗚！", "（呼嚕呼嚕...）"];
 const usersKey = "petParadiseMembers";
 const currentUserKey = "petParadiseCurrentMember";
 let audioContext;
@@ -23,39 +22,60 @@ function playMeowSound() {
   }
 
   const now = audioContext.currentTime;
-  const duration = .75;
+  const duration = 1.05;
   const gain = audioContext.createGain();
-  const oscillator = audioContext.createOscillator();
+  const filter = audioContext.createBiquadFilter();
+  const voice = audioContext.createOscillator();
   const overtone = audioContext.createOscillator();
   const overtoneGain = audioContext.createGain();
+  const vibrato = audioContext.createOscillator();
+  const vibratoGain = audioContext.createGain();
 
-  oscillator.type = "triangle";
-  oscillator.frequency.setValueAtTime(520, now);
-  oscillator.frequency.exponentialRampToValueAtTime(760, now + .16);
-  oscillator.frequency.exponentialRampToValueAtTime(430, now + duration);
+  voice.type = "triangle";
+  voice.frequency.setValueAtTime(360, now);
+  voice.frequency.exponentialRampToValueAtTime(690, now + .2);
+  voice.frequency.exponentialRampToValueAtTime(560, now + .48);
+  voice.frequency.exponentialRampToValueAtTime(290, now + duration);
 
   overtone.type = "sine";
-  overtone.frequency.setValueAtTime(1040, now);
-  overtone.frequency.exponentialRampToValueAtTime(1520, now + .16);
-  overtone.frequency.exponentialRampToValueAtTime(860, now + duration);
+  overtone.frequency.setValueAtTime(720, now);
+  overtone.frequency.exponentialRampToValueAtTime(1380, now + .2);
+  overtone.frequency.exponentialRampToValueAtTime(1120, now + .48);
+  overtone.frequency.exponentialRampToValueAtTime(580, now + duration);
+
+  vibrato.type = "sine";
+  vibrato.frequency.setValueAtTime(7, now);
+  vibratoGain.gain.setValueAtTime(7, now);
+  vibratoGain.gain.linearRampToValueAtTime(18, now + duration);
+  vibrato.connect(vibratoGain);
+  vibratoGain.connect(voice.frequency);
+
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(2400, now);
+  filter.frequency.exponentialRampToValueAtTime(1300, now + duration);
+  filter.Q.value = 2.5;
 
   gain.gain.setValueAtTime(.0001, now);
-  gain.gain.exponentialRampToValueAtTime(.18, now + .04);
-  gain.gain.setValueAtTime(.18, now + .3);
+  gain.gain.exponentialRampToValueAtTime(.2, now + .06);
+  gain.gain.setValueAtTime(.2, now + .32);
+  gain.gain.exponentialRampToValueAtTime(.09, now + .72);
   gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
 
-  overtoneGain.gain.setValueAtTime(.045, now);
+  overtoneGain.gain.setValueAtTime(.035, now);
   overtoneGain.gain.exponentialRampToValueAtTime(.0001, now + duration);
 
-  oscillator.connect(gain);
+  voice.connect(filter);
   overtone.connect(overtoneGain);
-  overtoneGain.connect(gain);
+  overtoneGain.connect(filter);
+  filter.connect(gain);
   gain.connect(audioContext.destination);
 
-  oscillator.start(now);
+  voice.start(now);
   overtone.start(now);
-  oscillator.stop(now + duration);
+  vibrato.start(now);
+  voice.stop(now + duration);
   overtone.stop(now + duration);
+  vibrato.stop(now + duration);
 }
 
 function getUsers() {
@@ -165,8 +185,7 @@ document.getElementById("logout-button").addEventListener("click", () => {
 
 document.getElementById("meow-button").addEventListener("click", () => {
   playMeowSound();
-  const randomIndex = Math.floor(Math.random() * meows.length);
-  soundDiv.innerText = meows[randomIndex];
+  soundDiv.innerText = "喵嗚～";
   setTimeout(() => {
     soundDiv.innerText = "";
   }, 2000);
