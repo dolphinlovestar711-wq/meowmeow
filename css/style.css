@@ -368,6 +368,17 @@ a.btnstyle.is-adding .cart-icon {
   margin-bottom: 30px;
 }
 
+.audio-credit {
+  color: #8b8b8b;
+  display: block;
+  font-size: .7rem;
+  margin-top: 16px;
+}
+
+.audio-credit a {
+  color: inherit;
+}
+
 .meow-btn,
 .auth-btn {
   background-color: #ff6b81;

@@ -7,6 +7,9 @@ const soundDiv = document.getElementById("sound");
 const usersKey = "petParadiseMembers";
 const currentUserKey = "petParadiseCurrentMember";
 let audioContext;
+let meowStopTimer;
+const recordedMeow = new Audio("audio/cat-meow.ogg?v=20260718-1");
+recordedMeow.preload = "auto";
 
 function playMeowSound() {
   const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -76,6 +79,24 @@ function playMeowSound() {
   voice.stop(now + duration);
   overtone.stop(now + duration);
   vibrato.stop(now + duration);
+}
+
+function playRecordedMeow() {
+  window.clearTimeout(meowStopTimer);
+  recordedMeow.pause();
+  recordedMeow.currentTime = 0;
+  recordedMeow.volume = .8;
+
+  const playPromise = recordedMeow.play();
+
+  if (playPromise) {
+    playPromise.catch(playMeowSound);
+  }
+
+  meowStopTimer = window.setTimeout(() => {
+    recordedMeow.pause();
+    recordedMeow.currentTime = 0;
+  }, 2200);
 }
 
 function getUsers() {
@@ -184,7 +205,7 @@ document.getElementById("logout-button").addEventListener("click", () => {
 });
 
 document.getElementById("meow-button").addEventListener("click", () => {
-  playMeowSound();
+  playRecordedMeow();
   soundDiv.innerText = "喵嗚～";
   setTimeout(() => {
     soundDiv.innerText = "";
