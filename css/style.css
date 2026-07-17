@@ -92,14 +92,14 @@ body {
 }
 
 .hero-carousel .carousel-item {
-  height: clamp(260px, 32vw, 430px);
+  height: clamp(420px, 55vw, 760px);
   background: #f7f1ed;
 }
 
 .hero-carousel img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -739,7 +739,7 @@ a.btnstyle.is-adding .cart-icon {
   }
 
   .hero-carousel .carousel-item {
-    height: 260px;
+    height: clamp(300px, 78vw, 520px);
   }
 
   .product-card img {
