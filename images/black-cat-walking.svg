@@ -1,51 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 165">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 145">
   <style>
-    .leg {
+    .walking-leg,
+    .walking-tail {
       transform-box: fill-box;
-      transform-origin: 50% 0;
     }
-    .leg-a {
-      animation: leg-forward .55s ease-in-out infinite alternate;
+    .walking-leg {
+      transform-origin: 50% 5%;
     }
-    .leg-b {
-      animation: leg-back .55s ease-in-out infinite alternate;
+    .front-a,
+    .back-a {
+      animation: step-a .72s ease-in-out infinite alternate;
     }
-    @keyframes leg-forward {
-      from { transform: rotate(-18deg); }
-      to { transform: rotate(18deg); }
+    .front-b,
+    .back-b {
+      animation: step-b .72s ease-in-out infinite alternate;
     }
-    @keyframes leg-back {
-      from { transform: rotate(18deg); }
-      to { transform: rotate(-18deg); }
+    .walking-tail {
+      animation: tail-sway 1.4s ease-in-out infinite alternate;
+      transform-origin: 95% 70%;
+    }
+    @keyframes step-a {
+      from { transform: rotate(-9deg); }
+      to { transform: rotate(9deg); }
+    }
+    @keyframes step-b {
+      from { transform: rotate(9deg); }
+      to { transform: rotate(-9deg); }
+    }
+    @keyframes tail-sway {
+      from { transform: rotate(-3deg); }
+      to { transform: rotate(4deg); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .leg { animation: none; }
+      .walking-leg,
+      .walking-tail {
+        animation: none;
+      }
     }
   </style>
 
-  <path d="M165 75 C205 72 205 25 190 22" fill="none" stroke="#111" stroke-linecap="round" stroke-width="12"/>
+  <path class="walking-tail" d="M62 72 C37 73 22 62 25 45 C27 31 39 25 49 31 C37 34 34 43 38 51 C42 60 53 58 65 55" fill="none" stroke="#111" stroke-linecap="round" stroke-width="12"/>
 
-  <g class="leg leg-a">
-    <path d="M78 94 L72 143 L59 151" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="11"/>
+  <g class="walking-leg back-a">
+    <path d="M75 85 C73 99 69 113 62 126 C60 130 64 133 74 132" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/>
   </g>
-  <g class="leg leg-b">
-    <path d="M102 97 L108 145 L121 151" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="11"/>
+  <g class="walking-leg back-b">
+    <path d="M100 88 C100 102 104 115 111 126 C114 130 109 133 99 132" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/>
   </g>
-  <g class="leg leg-b">
-    <path d="M132 96 L126 143 L114 151" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="11"/>
+  <g class="walking-leg front-b">
+    <path d="M151 85 C151 100 155 114 162 126 C165 130 160 133 150 132" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/>
   </g>
-  <g class="leg leg-a">
-    <path d="M154 91 L160 141 L174 149" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="11"/>
+  <g class="walking-leg front-a">
+    <path d="M171 81 C169 98 167 114 171 127 C172 131 178 132 185 130" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="13"/>
   </g>
 
-  <ellipse cx="121" cy="77" rx="58" ry="32" fill="#111"/>
-  <path d="M39 27 L57 39 C66 35 80 35 89 39 L108 27 L106 65 C106 83 92 96 73 96 C53 96 39 83 39 65 Z" fill="#111"/>
-  <ellipse cx="59" cy="59" rx="8" ry="10" fill="#fff"/>
-  <ellipse cx="86" cy="59" rx="8" ry="10" fill="#fff"/>
-  <circle cx="59" cy="61" r="3.5" fill="#111"/>
-  <circle cx="86" cy="61" r="3.5" fill="#111"/>
-  <path d="M68 73 L77 73 L72.5 80 Z" fill="#fff"/>
-  <path d="M51 83 Q73 98 95 82" fill="none" stroke="#ff6b81" stroke-linecap="round" stroke-width="6"/>
-  <circle cx="74" cy="94" r="6.5" fill="#ffd166" stroke="#fff" stroke-width="2"/>
-  <circle cx="74" cy="94" r="2" fill="#111"/>
+  <path d="M57 58 C68 41 91 35 119 38 C143 40 158 48 171 60 C177 68 177 80 169 88 C150 96 91 98 66 88 C55 81 52 68 57 58 Z" fill="#111"/>
+  <path d="M160 57 C168 48 176 43 185 43 L194 31 L199 45 L215 43 L208 56 C215 62 213 71 206 76 C197 83 183 82 174 75 C168 70 164 64 160 57 Z" fill="#111"/>
+  <path d="M204 72 C213 73 218 77 220 82 C215 82 210 80 206 77 Z" fill="#111"/>
 </svg>
