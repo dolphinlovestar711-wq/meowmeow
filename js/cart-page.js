@@ -1,9 +1,15 @@
 var cartStorageKey = "petParadiseCart";
+var purchaseHistoryKey = "petParadisePurchaseHistory";
 var cartItems = document.getElementById("cart-items");
 var cartTotal = document.getElementById("cart-total");
 var cartSummary = document.getElementById("cart-summary");
 var emptyCart = document.getElementById("empty-cart");
 var clearCartButton = document.getElementById("clear-cart");
+var checkoutButton = document.getElementById("checkout-button");
+var historyItems = document.getElementById("history-items");
+var emptyHistory = document.getElementById("empty-history");
+var clearHistoryButton = document.getElementById("clear-history");
+var historySearchInput = document.getElementById("history-search-input");
 
 function getCart() {
   try {
@@ -17,8 +23,30 @@ function saveCart(cart) {
   localStorage.setItem(cartStorageKey, JSON.stringify(cart));
 }
 
+function getPurchaseHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(purchaseHistoryKey) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function savePurchaseHistory(history) {
+  localStorage.setItem(purchaseHistoryKey, JSON.stringify(history));
+}
+
 function formatPrice(value) {
   return "NT$ " + value.toLocaleString("zh-TW");
+}
+
+function formatDate(isoDate) {
+  return new Intl.DateTimeFormat("zh-TW", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(isoDate));
 }
 
 function renderCart() {
@@ -56,6 +84,46 @@ function renderCart() {
   cartTotal.textContent = formatPrice(total);
 }
 
+function renderHistory(searchText) {
+  var history = getPurchaseHistory();
+  var keyword = (searchText || "").trim().toLowerCase();
+
+  if (keyword) {
+    history = history.filter(function (order) {
+      var productNames = order.items.map(function (item) {
+        return item.name;
+      }).join(" ");
+      var searchableText = [order.id, formatDate(order.purchasedAt), productNames].join(" ").toLowerCase();
+      return searchableText.includes(keyword);
+    });
+  }
+
+  historyItems.innerHTML = "";
+
+  if (history.length === 0) {
+    emptyHistory.hidden = false;
+    emptyHistory.querySelector("p").textContent = keyword ? "找不到符合條件的購買紀錄。" : "目前沒有歷史購買紀錄。";
+    clearHistoryButton.hidden = getPurchaseHistory().length === 0;
+    return;
+  }
+
+  emptyHistory.hidden = true;
+  clearHistoryButton.hidden = false;
+
+  history.forEach(function (order) {
+    var productDetails = order.items.map(function (item) {
+      return item.name + " × " + item.quantity;
+    }).join("、");
+    var row = document.createElement("tr");
+    row.innerHTML =
+      "<td data-label=\"訂單編號\" class=\"history-order-id\">" + order.id + "</td>" +
+      "<td data-label=\"購買日期\">" + formatDate(order.purchasedAt) + "</td>" +
+      "<td data-label=\"商品明細\" class=\"history-products\">" + productDetails + "</td>" +
+      "<td data-label=\"總金額\" class=\"history-total\">" + formatPrice(order.total) + "</td>";
+    historyItems.appendChild(row);
+  });
+}
+
 cartItems.addEventListener("click", function (event) {
   var removeButton = event.target.closest(".remove-cart-item");
 
@@ -78,4 +146,50 @@ clearCartButton.addEventListener("click", function () {
   }
 });
 
+checkoutButton.addEventListener("click", function () {
+  var cart = getCart();
+
+  if (cart.length === 0) {
+    return;
+  }
+
+  var total = cart.reduce(function (sum, item) {
+    return sum + item.price * item.quantity;
+  }, 0);
+
+  if (!window.confirm("確認完成本次購買，總金額為 " + formatPrice(total) + "？")) {
+    return;
+  }
+
+  var now = new Date();
+  var history = getPurchaseHistory();
+  history.unshift({
+    id: "PP" + now.getTime().toString().slice(-10),
+    purchasedAt: now.toISOString(),
+    member: localStorage.getItem("petParadiseCurrentMember") || "訪客",
+    items: cart,
+    total: total
+  });
+
+  savePurchaseHistory(history);
+  localStorage.removeItem(cartStorageKey);
+  historySearchInput.value = "";
+  renderCart();
+  renderHistory();
+  alert("購買完成，已加入歷史購買紀錄！");
+});
+
+historySearchInput.addEventListener("input", function () {
+  renderHistory(historySearchInput.value);
+});
+
+clearHistoryButton.addEventListener("click", function () {
+  if (window.confirm("確定要清除所有歷史購買紀錄嗎？")) {
+    localStorage.removeItem(purchaseHistoryKey);
+    historySearchInput.value = "";
+    renderHistory();
+  }
+});
+
 renderCart();
+renderHistory();
