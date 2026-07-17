@@ -1,3 +1,50 @@
+var cartStorageKey = "petParadiseCart";
+var cartCount = document.getElementById("cart-count");
+
+function getCart() {
+  try {
+    return JSON.parse(localStorage.getItem(cartStorageKey) || "[]");
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  localStorage.setItem(cartStorageKey, JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  var itemCount = getCart().reduce(function (total, item) {
+    return total + item.quantity;
+  }, 0);
+
+  if (cartCount) {
+    cartCount.textContent = itemCount;
+    cartCount.setAttribute("aria-label", "購物車內有 " + itemCount + " 件商品");
+  }
+}
+
+function addProductToCart(product) {
+  var cart = getCart();
+  var existingItem = cart.find(function (item) {
+    return item.id === product.id;
+  });
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: 1
+    });
+  }
+
+  saveCart(cart);
+  updateCartCount();
+}
+
 document.querySelectorAll(".btnstyle").forEach(function (button) {
   button.addEventListener("click", function (e) {
     // 阻止 <a> 標籤的預設跳轉／回頁首行為
@@ -10,6 +57,13 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
     var productName = productCard.querySelector(".card-title").textContent.trim();
     var priceText = productCard.querySelector(".price").textContent;
     var price = Number(priceText.replace(/[^0-9.]/g, ""));
+    var productId = button.dataset.itemId;
+
+    addProductToCart({
+      id: productId,
+      name: productName,
+      price: price
+    });
 
     // 先傳送 GA4 電商「加入購物車」事件。
     if (typeof gtag === "function") {
@@ -17,7 +71,7 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
         currency: "TWD",
         value: price,
         items: [{
-          item_id: button.dataset.itemId,
+          item_id: productId,
           item_name: productName,
           price: price,
           quantity: 1
@@ -31,3 +85,5 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
     }, 750);
   }, false);
 });
+
+updateCartCount();
