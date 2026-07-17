@@ -424,7 +424,7 @@ a.btnstyle.is-adding .cart-icon {
   }
 
   .wandering-cat,
-  .wandering-cat img {
+  .real-cat-sprite {
     animation: none;
   }
 }
@@ -551,7 +551,7 @@ a.btnstyle.is-adding .cart-icon {
 .wandering-cat {
   pointer-events: none;
   position: fixed;
-  width: clamp(105px, 9vw, 150px);
+  width: clamp(165px, 13vw, 225px);
   z-index: 1;
 }
 
@@ -560,7 +560,13 @@ a.btnstyle.is-adding .cart-icon {
   filter: drop-shadow(0 10px 10px rgba(38, 51, 53, .16));
 }
 
-.wandering-cat img {
+.real-cat-sprite {
+  animation: realistic-cat-steps .72s steps(4) infinite;
+  aspect-ratio: 512 / 360;
+  background-image: url("../images/black-cat-walk-sprite.png?v=20260718-1");
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
   display: block;
   width: 100%;
 }
@@ -612,6 +618,15 @@ a.btnstyle.is-adding .cart-icon {
   100% {
     opacity: 0;
     transform: translateX(clamp(-210px, -12vw, -80px));
+  }
+}
+
+@keyframes realistic-cat-steps {
+  from {
+    background-position: 0 center;
+  }
+  to {
+    background-position: 133.333% center;
   }
 }
 
