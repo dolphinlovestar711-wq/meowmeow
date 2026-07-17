@@ -173,6 +173,7 @@ a.btnstyle {
   font-size: 16px;
   gap: 8px;
   justify-content: center;
+  margin-top: .5cm;
   padding: 10px 10px;
   border: 1px solid #000000;
   border-radius: 16px;
