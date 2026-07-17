@@ -7,6 +7,56 @@ const soundDiv = document.getElementById("sound");
 const meows = ["喵～", "咪屋？", "喵嗚！", "（呼嚕呼嚕...）"];
 const usersKey = "petParadiseMembers";
 const currentUserKey = "petParadiseCurrentMember";
+let audioContext;
+
+function playMeowSound() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContext) {
+    return;
+  }
+
+  audioContext = audioContext || new AudioContext();
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+
+  const now = audioContext.currentTime;
+  const duration = .75;
+  const gain = audioContext.createGain();
+  const oscillator = audioContext.createOscillator();
+  const overtone = audioContext.createOscillator();
+  const overtoneGain = audioContext.createGain();
+
+  oscillator.type = "triangle";
+  oscillator.frequency.setValueAtTime(520, now);
+  oscillator.frequency.exponentialRampToValueAtTime(760, now + .16);
+  oscillator.frequency.exponentialRampToValueAtTime(430, now + duration);
+
+  overtone.type = "sine";
+  overtone.frequency.setValueAtTime(1040, now);
+  overtone.frequency.exponentialRampToValueAtTime(1520, now + .16);
+  overtone.frequency.exponentialRampToValueAtTime(860, now + duration);
+
+  gain.gain.setValueAtTime(.0001, now);
+  gain.gain.exponentialRampToValueAtTime(.18, now + .04);
+  gain.gain.setValueAtTime(.18, now + .3);
+  gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+
+  overtoneGain.gain.setValueAtTime(.045, now);
+  overtoneGain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+
+  oscillator.connect(gain);
+  overtone.connect(overtoneGain);
+  overtoneGain.connect(gain);
+  gain.connect(audioContext.destination);
+
+  oscillator.start(now);
+  overtone.start(now);
+  oscillator.stop(now + duration);
+  overtone.stop(now + duration);
+}
 
 function getUsers() {
   return JSON.parse(localStorage.getItem(usersKey) || "{}");
@@ -114,6 +164,7 @@ document.getElementById("logout-button").addEventListener("click", () => {
 });
 
 document.getElementById("meow-button").addEventListener("click", () => {
+  playMeowSound();
   const randomIndex = Math.floor(Math.random() * meows.length);
   soundDiv.innerText = meows[randomIndex];
   setTimeout(() => {
