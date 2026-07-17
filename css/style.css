@@ -166,24 +166,117 @@ body {
 }
 
 a.btnstyle {
+  align-items: center;
   color: white;
   background-color: #000000;
+  display: inline-flex;
   font-size: 16px;
+  gap: 8px;
+  justify-content: center;
   padding: 10px 10px;
   border: 1px solid #000000;
   border-radius: 16px;
   cursor: pointer;
   text-decoration: none;
-  line-height: 3em;
+  line-height: 1.5;
+  min-height: 52px;
+  transition: background-color .2s ease, transform .2s ease;
 }
 
 a.btnstyle:hover {
   background-color: #00438a;
+  color: white;
+  transform: translateY(-2px);
 }
 
 a.btnstyle:focus-visible {
   outline: 3px solid rgba(0, 123, 255, .3);
   outline-offset: 3px;
+}
+
+.cart-animation {
+  display: inline-block;
+  height: 30px;
+  position: relative;
+  width: 50px;
+}
+
+.cart-animation i {
+  color: #fff;
+  display: block;
+  line-height: 1;
+  position: absolute;
+}
+
+.cart-icon {
+  bottom: 1px;
+  font-size: 25px;
+  right: 0;
+}
+
+.cart-box {
+  font-size: 14px;
+  left: 1px;
+  top: 0;
+}
+
+a.btnstyle:hover .cart-box,
+a.btnstyle:focus-visible .cart-box,
+a.btnstyle.is-adding .cart-box {
+  animation: box-into-cart .75s ease-in-out;
+}
+
+a.btnstyle:hover .cart-icon,
+a.btnstyle:focus-visible .cart-icon,
+a.btnstyle.is-adding .cart-icon {
+  animation: cart-bounce .75s ease-in-out;
+}
+
+@keyframes box-into-cart {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+  60% {
+    opacity: 1;
+    transform: translate(25px, 11px) rotate(12deg) scale(.85);
+  }
+  75%,
+  100% {
+    opacity: 0;
+    transform: translate(29px, 14px) rotate(12deg) scale(.55);
+  }
+}
+
+@keyframes cart-bounce {
+  0%,
+  55%,
+  100% {
+    transform: translateY(0);
+  }
+  72% {
+    transform: translateY(3px) rotate(-4deg);
+  }
+  86% {
+    transform: translateY(-2px) rotate(2deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.btnstyle,
+  a.btnstyle:hover {
+    transform: none;
+    transition: none;
+  }
+
+  a.btnstyle:hover .cart-box,
+  a.btnstyle:focus-visible .cart-box,
+  a.btnstyle.is-adding .cart-box,
+  a.btnstyle:hover .cart-icon,
+  a.btnstyle:focus-visible .cart-icon,
+  a.btnstyle.is-adding .cart-icon {
+    animation: none;
+  }
 }
 
 .site-footer {

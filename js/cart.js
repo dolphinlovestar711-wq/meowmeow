@@ -2,6 +2,9 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
   button.addEventListener("click", function (e) {
     // 阻止 <a> 標籤的預設跳轉／回頁首行為
     e.preventDefault();
+    button.classList.remove("is-adding");
+    void button.offsetWidth;
+    button.classList.add("is-adding");
 
     var productCard = button.closest(".product-card");
     var productName = productCard.querySelector(".card-title").textContent.trim();
@@ -22,6 +25,9 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
       });
     }
 
-    alert("您已將商品加入購物車");
+    window.setTimeout(function () {
+      button.classList.remove("is-adding");
+      alert("您已將商品加入購物車");
+    }, 750);
   }, false);
 });
