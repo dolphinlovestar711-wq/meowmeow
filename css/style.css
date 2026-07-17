@@ -423,7 +423,8 @@ a.btnstyle.is-adding .cart-icon {
     animation: none;
   }
 
-  .wandering-cat {
+  .wandering-cat,
+  .wandering-cat img {
     animation: none;
   }
 }
@@ -548,60 +549,82 @@ a.btnstyle.is-adding .cart-icon {
 }
 
 .wandering-cat {
-  bottom: 8vh;
-  filter: drop-shadow(0 10px 10px rgba(38, 51, 53, .16));
   pointer-events: none;
   position: fixed;
   width: clamp(105px, 9vw, 150px);
   z-index: 1;
 }
 
+.wandering-cat-figure {
+  display: block;
+  filter: drop-shadow(0 10px 10px rgba(38, 51, 53, .16));
+}
+
 .wandering-cat img {
+  animation: cat-running-steps .32s steps(2, jump-none) infinite;
   display: block;
   width: 100%;
 }
 
 .wandering-cat-left {
-  animation: cat-wander-left 10s ease-in-out infinite alternate;
-  left: clamp(18px, 8vw, 150px);
+  animation: cat-run-left-zone 5s linear infinite;
+  left: 2vw;
+  top: 31vh;
 }
 
 .wandering-cat-right {
-  animation: cat-wander-right 11s ease-in-out 1.2s infinite alternate;
-  right: clamp(18px, 8vw, 150px);
+  animation: cat-run-right-zone 5.4s linear .8s infinite;
+  right: 2vw;
+  top: 61vh;
 }
 
-.wandering-cat-right img {
+.wandering-cat-right .wandering-cat-figure {
   transform: scaleX(-1);
 }
 
-@keyframes cat-wander-left {
+@keyframes cat-run-left-zone {
   0% {
-    transform: translate(0, 0) rotate(-2deg);
+    opacity: 0;
+    transform: translateX(0);
   }
-  35% {
-    transform: translate(34px, -90px) rotate(2deg);
+  4% {
+    opacity: 1;
   }
-  70% {
-    transform: translate(-6px, -185px) rotate(-1deg);
+  92% {
+    opacity: 1;
   }
   100% {
-    transform: translate(48px, -280px) rotate(2deg);
+    opacity: 0;
+    transform: translateX(clamp(80px, 12vw, 210px));
   }
 }
 
-@keyframes cat-wander-right {
+@keyframes cat-run-right-zone {
   0% {
-    transform: translate(0, -250px) rotate(2deg);
+    opacity: 0;
+    transform: translateX(0);
   }
-  35% {
-    transform: translate(-42px, -170px) rotate(-2deg);
+  4% {
+    opacity: 1;
   }
-  70% {
-    transform: translate(8px, -80px) rotate(1deg);
+  92% {
+    opacity: 1;
   }
   100% {
-    transform: translate(-32px, 0) rotate(-2deg);
+    opacity: 0;
+    transform: translateX(clamp(-210px, -12vw, -80px));
+  }
+}
+
+@keyframes cat-running-steps {
+  0% {
+    transform: translateY(0) rotate(-3deg) scaleY(.96);
+  }
+  50% {
+    transform: translateY(-9px) rotate(3deg) scaleY(1.03);
+  }
+  100% {
+    transform: translateY(0) rotate(-3deg) scaleY(.96);
   }
 }
 
