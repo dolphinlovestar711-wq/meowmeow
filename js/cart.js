@@ -37,6 +37,7 @@ function addProductToCart(product) {
       id: product.id,
       name: product.name,
       price: product.price,
+      category: product.category,
       quantity: 1
     });
   }
@@ -61,7 +62,8 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
     addProductToCart({
       id: productId,
       name: productName,
-      price: price
+      price: price,
+      category: "寵物用品"
     });
 
     if (typeof gtag === "function") {
@@ -71,6 +73,7 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
         items: [{
           item_id: productId,
           item_name: productName,
+          item_category: "寵物用品",
           price: price,
           quantity: 1
         }]

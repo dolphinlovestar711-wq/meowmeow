@@ -27,6 +27,7 @@
         return {
           item_id: item.id,
           item_name: item.name,
+          item_category: item.category || "寵物用品",
           price: item.price,
           quantity: item.quantity
         };
