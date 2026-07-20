@@ -36,6 +36,6 @@
 
     sessionStorage.setItem("petParadiseCompletedOrder", JSON.stringify(order));
     localStorage.removeItem("petParadiseCart");
-    window.location.href = "order-success.html";
+    window.location.href = "goal.html";
   });
 }());

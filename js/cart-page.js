@@ -162,9 +162,26 @@ checkoutButton.addEventListener("click", function () {
   }
 
   var now = new Date();
+  var transactionId = "PP" + now.getTime().toString().slice(-10);
   var history = getPurchaseHistory();
+
+  sessionStorage.setItem("petParadiseCompletedOrder", JSON.stringify({
+    transaction_id: transactionId,
+    currency: "TWD",
+    value: total,
+    items: cart.map(function (item) {
+      return {
+        item_id: item.id,
+        item_name: item.name,
+        item_category: item.category || "寵物用品",
+        price: item.price,
+        quantity: item.quantity
+      };
+    })
+  }));
+
   history.unshift({
-    id: "PP" + now.getTime().toString().slice(-10),
+    id: transactionId,
     purchasedAt: now.toISOString(),
     member: localStorage.getItem("petParadiseCurrentMember") || "訪客",
     items: cart,
@@ -177,6 +194,7 @@ checkoutButton.addEventListener("click", function () {
   renderCart();
   renderHistory();
   alert("購買完成，已加入歷史購買紀錄！");
+  window.location.href = "goal.html";
 });
 
 historySearchInput.addEventListener("input", function () {
