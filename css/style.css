@@ -1174,6 +1174,28 @@ a.btnstyle.is-adding .cart-icon {
   text-align: center;
 }
 
+.checkout-page {
+  background: var(--paper);
+  min-height: calc(100vh - 57px);
+}
+
+.checkout-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(38, 51, 53, .1);
+  max-width: 560px;
+  padding: 2rem;
+}
+
+.cart-item {
+  border-bottom: 1px solid #eee;
+  padding: .75rem 0;
+}
+
+.checkout-total {
+  font-size: 1.1rem;
+}
+
 @media (max-width: 767.98px) {
   .navbar {
     min-height: 68px;

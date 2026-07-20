@@ -47,7 +47,6 @@ function addProductToCart(product) {
 
 document.querySelectorAll(".btnstyle").forEach(function (button) {
   button.addEventListener("click", function (e) {
-    // 阻止 <a> 標籤的預設跳轉／回頁首行為
     e.preventDefault();
     button.classList.remove("is-adding");
     void button.offsetWidth;
@@ -65,7 +64,6 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
       price: price
     });
 
-    // 先傳送 GA4 電商「加入購物車」事件。
     if (typeof gtag === "function") {
       gtag("event", "add_to_cart", {
         currency: "TWD",
@@ -81,7 +79,7 @@ document.querySelectorAll(".btnstyle").forEach(function (button) {
 
     window.setTimeout(function () {
       button.classList.remove("is-adding");
-      alert("您已將商品加入購物車");
+      alert("您已將商品加入購物車，可至「示範結帳」完成付款。");
     }, 750);
   }, false);
 });

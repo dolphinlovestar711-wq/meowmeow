@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>示範結帳｜毛孩好伴 Pet Paradise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-47TN8S91ZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-47TN8S91ZG');
+  </script>
+</head>
+<body>
+  <nav class="navbar bg-white sticky-top">
+    <div class="container"><a class="navbar-brand" href="index.html"><img class="brand-logo" src="images/logo.png" alt="毛孩好伴 Logo"><span>毛孩好伴</span></a></div>
+  </nav>
+
+  <main class="checkout-page py-5">
+    <div class="container">
+      <div class="checkout-card mx-auto">
+        <h1 class="section-title">示範結帳</h1>
+        <p class="text-muted">此頁僅供測試 GA4 訂單完成事件，未串接實際付款。</p>
+        <div id="cart-items" class="mb-4"></div>
+        <div class="checkout-total d-flex justify-content-between mb-4"><span>訂單總計</span><strong id="cart-total">NT$ 0</strong></div>
+        <button id="complete-order" class="btn btn-primary w-100" type="button">模擬付款完成</button>
+        <a class="d-block text-center mt-3" href="index.html#products">繼續選購</a>
+      </div>
+    </div>
+  </main>
+  <script src="js/checkout.js"></script>
+</body>
+</html>
