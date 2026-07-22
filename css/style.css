@@ -1174,6 +1174,108 @@ a.btnstyle.is-adding .cart-icon {
   text-align: center;
 }
 
+.footer-policy-link {
+  color: rgba(255, 255, 255, .82);
+  text-underline-offset: .2em;
+}
+
+.footer-policy-link:hover,
+.footer-policy-link:focus {
+  color: #fff;
+}
+
+.privacy-page {
+  background: var(--paper);
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+}
+
+.privacy-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 10px 32px rgba(38, 51, 53, .09);
+  color: var(--ink);
+  margin: 0 auto;
+  max-width: 920px;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+
+.privacy-header {
+  border-bottom: 1px solid #eadfd9;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+}
+
+.privacy-eyebrow {
+  color: var(--brand);
+  display: block;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  margin-bottom: .45rem;
+}
+
+.privacy-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: .65rem;
+}
+
+.privacy-header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.privacy-card section {
+  scroll-margin-top: 90px;
+}
+
+.privacy-card h2 {
+  color: #2e3335;
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 2.2rem 0 .85rem;
+}
+
+.privacy-card p,
+.privacy-card li {
+  line-height: 1.9;
+}
+
+.privacy-card a {
+  color: #9b4c42;
+  overflow-wrap: anywhere;
+}
+
+.privacy-note {
+  align-items: flex-start;
+  background: #f8efeb;
+  border-left: 4px solid var(--brand);
+  border-radius: 8px;
+  display: flex;
+  gap: .65rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+}
+
+.privacy-note i {
+  color: var(--brand);
+  margin-top: .15rem;
+}
+
+.privacy-card address {
+  background: #f7f7f7;
+  border-radius: 10px;
+  font-style: normal;
+  line-height: 1.9;
+  margin-bottom: 0;
+  padding: 1rem 1.2rem;
+}
+
+.privacy-footer {
+  padding-top: 1.5rem;
+}
+
 .checkout-page {
   background: var(--paper);
   min-height: calc(100vh - 57px);
