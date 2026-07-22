@@ -147,6 +147,46 @@ body {
   object-position: center top;
 }
 
+.goal-page {
+  background: linear-gradient(180deg, #fff 0%, #fff9f4 100%);
+  min-height: 100vh;
+}
+
+.goal-main {
+  min-height: calc(100vh - 76px);
+  position: relative;
+  z-index: 1;
+}
+
+.goal-confetti {
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  z-index: 1040;
+}
+
+.goal-confetti-piece {
+  animation: goal-confetti-fall var(--duration) linear var(--delay) infinite;
+  background: var(--color);
+  border-radius: var(--radius);
+  height: var(--height);
+  left: var(--left);
+  opacity: .9;
+  position: absolute;
+  top: -12vh;
+  width: var(--width);
+}
+
+@keyframes goal-confetti-fall {
+  from {
+    transform: translate3d(0, -5vh, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(var(--drift), 115vh, 0) rotate(var(--spin));
+  }
+}
+
 .carousel-indicators [data-bs-target] {
   width: 26px;
   height: 3px;
@@ -471,6 +511,10 @@ a.btnstyle.is-adding .cart-icon {
   .home-wandering-cat,
   .home-persian-cat-sprite {
     animation: none;
+  }
+
+  .goal-confetti {
+    display: none;
   }
 }
 
