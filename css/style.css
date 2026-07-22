@@ -12,6 +12,47 @@ body {
   background: #fff;
 }
 
+/* 首頁漫步白貓：沿用會員頁的四格走路動畫，讓兩隻貓從兩側相向走動。 */
+.home-wandering-cat {
+  pointer-events: none;
+  position: fixed;
+  width: clamp(135px, 11vw, 205px);
+  z-index: 1031;
+}
+
+.home-wandering-cat-figure {
+  display: block;
+  filter: drop-shadow(0 10px 10px rgba(38, 51, 53, .18));
+}
+
+.home-persian-cat-sprite {
+  animation: realistic-cat-steps .72s steps(4) infinite;
+  aspect-ratio: 512 / 360;
+  background-image: url("../images/black-cat-walk-sprite.png?v=20260718-1");
+  background-position: 0 center;
+  background-repeat: no-repeat;
+  background-size: 400% 100%;
+  display: block;
+  filter: brightness(0) invert(1) drop-shadow(0 0 1.5px rgba(199, 207, 210, .9));
+  width: 100%;
+}
+
+.home-wandering-cat-left {
+  animation: cat-run-left-zone 5s linear infinite;
+  left: 2vw;
+  top: 31vh;
+}
+
+.home-wandering-cat-right {
+  animation: cat-run-right-zone 5.4s linear .8s infinite;
+  right: 2vw;
+  top: 61vh;
+}
+
+.home-wandering-cat-right .home-wandering-cat-figure {
+  transform: scaleX(-1);
+}
+
 .navbar {
   min-height: 76px;
   box-shadow: 0 1px 8px rgba(38, 51, 53, .08);
@@ -424,7 +465,9 @@ a.btnstyle.is-adding .cart-icon {
   }
 
   .wandering-cat,
-  .real-cat-sprite {
+  .real-cat-sprite,
+  .home-wandering-cat,
+  .home-persian-cat-sprite {
     animation: none;
   }
 }
@@ -1312,7 +1355,8 @@ a.btnstyle.is-adding .cart-icon {
     height: 42px;
   }
 
-  .wandering-cat {
+  .wandering-cat,
+  .home-wandering-cat {
     display: none;
   }
 
