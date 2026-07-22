@@ -167,7 +167,7 @@ body {
 }
 
 .goal-character {
-  animation: goal-happy-spin 4.2s ease-in-out infinite;
+  animation: goal-happy-sway 2.4s ease-in-out infinite;
   height: 225px;
   position: relative;
   transform-origin: 50% 70%;
@@ -261,14 +261,13 @@ body {
   transform: translateY(-50%);
 }
 
-@keyframes goal-happy-spin {
+@keyframes goal-happy-sway {
   0%,
   100% {
-    transform: rotate(0deg) translateY(0);
+    transform: rotate(-5deg) translateY(0);
   }
-  45%,
-  55% {
-    transform: rotate(360deg) translateY(-8px);
+  50% {
+    transform: rotate(5deg) translateY(-5px);
   }
 }
 
