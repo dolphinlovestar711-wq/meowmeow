@@ -1,6 +1,7 @@
 (function () {
   var completedOrderKey = "petParadiseCompletedOrder";
-  var trackedOrderKey = "petParadiseTrackedPurchase";
+  var trackedPurchaseKey = "petParadiseTrackedPurchase";
+  var trackedConversionKey = "petParadiseTrackedAdsConversion";
   var storedOrder = sessionStorage.getItem(completedOrderKey);
 
   if (!storedOrder || typeof gtag !== "function") {
@@ -10,14 +11,26 @@
   try {
     var order = JSON.parse(storedOrder);
 
-    if (!order.transaction_id || sessionStorage.getItem(trackedOrderKey) === order.transaction_id) {
+    if (!order.transaction_id) {
       return;
     }
 
-    gtag("event", "purchase", order);
-    sessionStorage.setItem(trackedOrderKey, order.transaction_id);
+    if (sessionStorage.getItem(trackedPurchaseKey) !== order.transaction_id) {
+      gtag("event", "purchase", order);
+      sessionStorage.setItem(trackedPurchaseKey, order.transaction_id);
+    }
+
+    if (sessionStorage.getItem(trackedConversionKey) !== order.transaction_id) {
+      gtag("event", "conversion", {
+        send_to: "AW-18338795887/5GftCluOitcCO-jz6hF",
+        value: 1.0,
+        currency: "TWD",
+        transaction_id: order.transaction_id
+      });
+      sessionStorage.setItem(trackedConversionKey, order.transaction_id);
+    }
   } catch (error) {
-    console.error("無法送出 GA4 purchase 事件。", error);
+    console.error("無法送出購買追蹤事件。", error);
   }
 }());
 
