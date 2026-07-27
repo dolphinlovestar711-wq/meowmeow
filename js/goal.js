@@ -12,22 +12,41 @@
     var order = JSON.parse(storedOrder);
 
     if (!order.transaction_id) {
+      console.error("訂單缺少 transaction_id，無法送出購買事件。");
       return;
     }
 
+    var orderValue = Number(order.value);
+
+    if (!Number.isFinite(orderValue) || orderValue < 0) {
+      console.error("訂單金額格式錯誤：", order.value);
+      return;
+    }
+
+    var orderCurrency = order.currency || "TWD";
+
+    // 傳送 GA4 purchase 事件
     if (sessionStorage.getItem(trackedPurchaseKey) !== order.transaction_id) {
       gtag("event", "purchase", order);
       sessionStorage.setItem(trackedPurchaseKey, order.transaction_id);
     }
 
-    if (sessionStorage.getItem(trackedConversionKey) !== order.transaction_id) {
+    // 傳送 Google Ads 購買轉換
+    if (
+      sessionStorage.getItem(trackedConversionKey) !==
+      order.transaction_id
+    ) {
       gtag("event", "conversion", {
         send_to: "AW-18338795887/5GftCLuOjtccEO-iz6hE",
-        value: 1.0,
-        currency: "TWD",
+        value: orderValue,
+        currency: orderCurrency,
         transaction_id: order.transaction_id
       });
-      sessionStorage.setItem(trackedConversionKey, order.transaction_id);
+
+      sessionStorage.setItem(
+        trackedConversionKey,
+        order.transaction_id
+      );
     }
   } catch (error) {
     console.error("無法送出購買追蹤事件。", error);
