@@ -22,7 +22,7 @@
 
     if (sessionStorage.getItem(trackedConversionKey) !== order.transaction_id) {
       gtag("event", "conversion", {
-        send_to: "AW-18338795887/5GftCluOitcCO-jz6hF",
+        send_to: "AW-18338795887/5GftCLuOjtccEO-iz6hE",
         value: 1.0,
         currency: "TWD",
         transaction_id: order.transaction_id
