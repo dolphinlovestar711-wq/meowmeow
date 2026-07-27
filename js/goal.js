@@ -1,8 +1,7 @@
 (function () {
-  var completedOrderKey = "petParadiseCompletedOrder";
   var trackedPurchaseKey = "petParadiseTrackedPurchase";
   var trackedConversionKey = "petParadiseTrackedAdsConversion";
-  var storedOrder = sessionStorage.getItem(completedOrderKey);
+  var storedOrder = sessionStorage.getItem("petParadiseCompletedOrder");
 
   if (!storedOrder || typeof gtag !== "function") {
     return;
