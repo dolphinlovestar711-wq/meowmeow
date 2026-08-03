@@ -374,7 +374,8 @@ body {
   width: 100%;
 }
 
-.facebook-post-scroll {
+.facebook-post-scroll,
+.form-scroll {
   background: #fff;
   height: 520px;
   overflow-y: auto;
@@ -1593,7 +1594,7 @@ a.btnstyle.is-adding .cart-icon {
 
   .facebook-post-scroll,
   .facebook-more-link,
-  .form-frame {
+  .form-scroll {
     display: none;
   }
 
