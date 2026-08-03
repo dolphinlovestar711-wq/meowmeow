@@ -368,6 +368,14 @@ body {
   background: #fff;
   border: 0;
   display: block;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.facebook-section .embed-column {
+  flex: 0 0 524px;
+  max-width: 524px;
+  width: 100%;
 }
 
 .product-card {
