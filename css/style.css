@@ -364,7 +364,7 @@ body {
   padding: 3.4rem 0 4.4rem;
 }
 
-.facebook-frame,
+.facebook-post-frame,
 .form-frame {
   background: #fff;
   border: 0;
@@ -372,6 +372,27 @@ body {
   margin: 0 auto;
   max-width: 500px;
   width: 100%;
+}
+
+.facebook-post-scroll {
+  background: #fff;
+  height: 520px;
+  overflow-y: auto;
+}
+
+.facebook-more-link {
+  align-items: center;
+  color: var(--brand);
+  display: inline-flex;
+  font-weight: 700;
+  gap: .35rem;
+  margin-top: .85rem;
+  text-decoration: none;
+}
+
+.facebook-more-link:hover,
+.facebook-more-link:focus {
+  color: var(--ink);
 }
 
 .facebook-section .embed-column {
@@ -1570,7 +1591,8 @@ a.btnstyle.is-adding .cart-icon {
     min-width: 0;
   }
 
-  .facebook-frame,
+  .facebook-post-scroll,
+  .facebook-more-link,
   .form-frame {
     display: none;
   }
