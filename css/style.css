@@ -360,6 +360,7 @@ body {
 
 .facebook-section {
   background: var(--paper);
+  overflow: hidden;
   padding: 3.4rem 0 4.4rem;
 }
 
@@ -376,7 +377,12 @@ body {
 .facebook-section .embed-column {
   flex: 0 0 524px;
   max-width: 524px;
+  min-width: 0;
   width: 100%;
+}
+
+.mobile-embed-link {
+  display: none;
 }
 
 .product-card {
@@ -1561,12 +1567,39 @@ a.btnstyle.is-adding .cart-icon {
   .facebook-section .embed-column {
     flex: 0 0 100%;
     max-width: 100%;
+    min-width: 0;
   }
 
   .facebook-frame,
   .form-frame {
-    height: 820px;
-    max-width: 100%;
+    display: none;
+  }
+
+  .mobile-embed-link {
+    align-items: flex-start;
+    background: #fff;
+    border-radius: .75rem;
+    display: flex;
+    flex-direction: column;
+    gap: .9rem;
+    padding: 1.4rem;
+  }
+
+  .mobile-embed-link p {
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .mobile-embed-link a {
+    align-items: center;
+    background: var(--brand);
+    border-radius: .5rem;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 700;
+    gap: .45rem;
+    padding: .7rem 1rem;
+    text-decoration: none;
   }
 
   .hero-carousel .carousel-item {
