@@ -396,6 +396,14 @@ body {
   color: var(--ink);
 }
 
+.form-line-add {
+  margin-top: .85rem;
+}
+
+.form-line-add img {
+  display: block;
+}
+
 .facebook-section .embed-column {
   flex: 0 0 524px;
   max-width: 524px;
